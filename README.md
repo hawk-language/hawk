@@ -1,2 +1,2 @@
-# flap
-The officialy Repository of the Flap Programming Language
+# Hawk
+The officialy Repository of the Hawk Programming Language
