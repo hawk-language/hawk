@@ -1,2 +1,2 @@
 # Hawk
-The officialy Repository of the Hawk Programming Language
+The official Repository of the Hawk Programming Language
