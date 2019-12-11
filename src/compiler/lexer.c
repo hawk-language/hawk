@@ -1,6 +1,7 @@
 
 #include <stdlib.h>
 #include "lexer.h"
+#include "../collections/c_list.h"
 
 enum Ha_Tokens getEnum(char *value) {
 }
@@ -20,7 +21,7 @@ enum Ha_Tokens isIdentifier(char *value) {
 
 }
 
-int lex(struct Ha_Lexer* lexer) {
+int lex(struct Ha_Lexer* lexer, List* list) {
 
     char c;
     int n;
@@ -32,17 +33,12 @@ int lex(struct Ha_Lexer* lexer) {
         exit(-1);
     }
 
-    printf("hello");
 
     while ((n = fgetc(fp)) != EOF) {
-        c = (char)n;
-        if (c != ' ' && c != '(') {
 
+        c = (char) n;
 
-        } else {
-            printf("%s", currentToken);
-            currentToken = "";
-        }
+        append(list, c);
 
     }
 
@@ -55,6 +51,8 @@ struct Ha_Token getNextToken(char *line) {
 
 
 }
+
+
 
 
 
