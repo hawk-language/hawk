@@ -10,22 +10,29 @@
 #ifndef HAWK_LEXER_H
 #define HAWK_LEXER_H
 
+// The Lexer struct which contains the character list, the file, the token list and the function pointers
 
 typedef struct Ha_Lexer {
+
     char *file;
     struct c_list *clist;
     struct t_list *tlist;
+
+    // Function pointers for the clist
     int (*lex)(struct Ha_Lexer* lexer);
     int (*lexer_inputFile)(struct Ha_Lexer* lexer);
-    T_List* (*eval_List) (struct c_list* list);
+    int (*eval_List) (struct Ha_Lexer* lexer);
+
+
+
 } Lexer;
 
 
 
 
 Lexer new_Lexer(char* file);
-int lexer_fileInput(struct Ha_Lexer* lexer);
-int lexing(struct Ha_Lexer* lexer);
-T_List* evaluate_List(struct c_list* list);
+int _lexer_fileInput(struct Ha_Lexer* lexer);
+int _lexing(struct Ha_Lexer* lexer);
+int _evaluate_List(struct Ha_Lexer* lexer);
 
 #endif //HAWK_LEXER_H

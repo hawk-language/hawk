@@ -4,6 +4,9 @@
 
 #include <stdlib.h>
 #include "t_list.h"
+
+// Constructor like function for creating a new Token List
+
 struct t_list* new_Token_List() {
 
     T_List* new = malloc(sizeof(T_List));
@@ -12,7 +15,9 @@ struct t_list* new_Token_List() {
 
 }
 
-struct t_list* t_append(T_List* list, struct Ha_Token token) {
+// Function for appending a new item to the Token List
+
+struct t_list* _t_append(T_List* list, struct Ha_Token token) {
 
     if (list->head == NULL) {
 

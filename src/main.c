@@ -8,6 +8,8 @@ int main(int argc, char *argv[]) {
 
     Lexer lexer = new_Lexer("../test.hk");
     lexer.lex(&lexer);
+    lexer.clist->printList(lexer.clist);
 
-    printList(lexer.clist);
+
+
 }

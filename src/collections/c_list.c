@@ -6,16 +6,21 @@
 #include <stdio.h>
 #include "c_list.h"
 
-List* new_List() {
+// A constructor like function for initializing a character list
 
+List* new_List() {
     List* list = malloc(sizeof(List));
     list->head = NULL;
     list->tail = NULL;
+    list->append = _list_append;
+    list->printList = _c_printList;
     return list;
 
 }
 
-void append(List* list, char ch) {
+// Adds a further char to the character list
+
+void _list_append(List* list, char ch) {
 
     if (list->head == NULL) {
 
@@ -37,7 +42,9 @@ void append(List* list, char ch) {
     }
 }
 
-void printList(List* list) {
+// Prints the whole list to the console (only for debugging purposes)
+
+void _c_printList(List* list) {
 
     Node* current = list->head;
 

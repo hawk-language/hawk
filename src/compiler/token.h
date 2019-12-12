@@ -5,6 +5,8 @@
 #ifndef HAWK_TOKEN_H
 #define HAWK_TOKEN_H
 
+// All possible Tokens
+
 enum Ha_Tokens {
     SPACE,
     COMMA,
@@ -37,6 +39,8 @@ enum Ha_Tokens {
     KW_IF,
     KW_ELSE
 };
+
+// Struct for a single token
 
 struct Ha_Token {
     enum Ha_Tokens tk; // todo: rename
