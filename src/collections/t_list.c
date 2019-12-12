@@ -4,7 +4,6 @@
 
 #include <stdlib.h>
 #include "t_list.h"
-
 struct t_list* new_Token_List() {
 
     T_List* new = malloc(sizeof(T_List));

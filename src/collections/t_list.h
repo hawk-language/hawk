@@ -18,6 +18,7 @@ typedef struct t_list {
     int length;
     struct t_Node* head;
     struct t_Node* tail;
+    int(*append)(struct t_list* list, struct Ha_Token token);
 
 } T_List;
 

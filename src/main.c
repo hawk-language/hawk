@@ -5,10 +5,9 @@
 #include "collections/c_list.h"
 
 int main(int argc, char *argv[]) {
-    Lexer le = initialize_lex("../test.hk");
-    List* lst = new_List();
-    lex(&le, lst);
 
+    Lexer lexer = new_Lexer("../test.hk");
+    lexer.lex(&lexer);
 
-    printList(lst);
+    printList(lexer.clist);
 }

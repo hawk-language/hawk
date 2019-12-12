@@ -2,30 +2,31 @@
 #include <stdlib.h>
 #include "lexer.h"
 #include "../collections/c_list.h"
+#include "../collections/t_list.h"
+#include "token.h"
 
-enum Ha_Tokens getEnum(char *value) {
-}
 
-Lexer initialize_lex(char* file) {
-
+Lexer new_Lexer(char* file) {
     Lexer lexer;
     lexer.file = file;
+    lexer.clist = malloc(sizeof(struct c_list));
+    lexer.tlist = malloc(sizeof(struct t_list));
+    lexer.lex = lexing;
+    lexer.eval_List = evaluate_List;
+    lexer.lexer_inputFile = lexer_fileInput;
     return lexer;
 }
 
 
-enum Ha_Tokens isIdentifier(char *value) {
-
-    // Hier wird ueberprueft ob der Identifier als Variablenname gueltig ist
-    return IDENTIFIER;
-
+int lexing(struct Ha_Lexer* lexer) {
+    lexer_fileInput(lexer);
+    lexer->tlist = lexer->eval_List(lexer->clist);
+    return 1;
 }
 
-int lex(struct Ha_Lexer* lexer, List* list) {
+int lexer_fileInput(struct Ha_Lexer* lexer) {
 
     char c;
-    int n;
-    char *currentToken = "";
     FILE *fp = fopen(lexer->file, "r");
 
     if (fp == NULL) {
@@ -33,22 +34,23 @@ int lex(struct Ha_Lexer* lexer, List* list) {
         exit(-1);
     }
 
-
-    while ((n = fgetc(fp)) != EOF) {
-
-        c = (char) n;
-
-        append(list, c);
-
+    while ((c = fgetc(fp)) != EOF) {
+        append(lexer->clist, c);
     }
-
     return 1;
+
 }
 
+T_List* evaluate_List(struct c_list* list) {
 
-struct Ha_Token getNextToken(char *line) {
 
 
+}
+
+enum Ha_Tokens isIdentifier(char *value) {
+
+    // Hier wird ueberprueft ob der Identifier als Variablenname gueltig ist
+    return IDENTIFIER;
 
 }
 
