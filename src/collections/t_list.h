@@ -19,14 +19,17 @@ typedef struct t_Node {
 
 typedef struct t_list {
 
-    int length;
+    //int length;
     struct t_Node* head;
     struct t_Node* tail;
-    struct t_list* (*t_append)(struct t_list* list, struct Ha_Token token);
+    void (*t_append)(struct t_list* list, struct Ha_Token token);
+    void (*t_printList)(struct t_list* list);
 
 } T_List;
 
 
-struct t_list* _t_append(T_List* list, struct Ha_Token token);
+void _t_append(T_List* list, struct Ha_Token token);
+struct t_list* new_Token_List();
+void _t_printList(T_List* list);
 
 #endif //HAWK_T_LIST_H

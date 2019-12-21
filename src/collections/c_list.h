@@ -24,6 +24,8 @@ typedef struct c_list {
     struct c_Node* tail;
     void (*append) (struct c_list* list, char ch);
     void (*printList) (struct c_list* list);
+    void (*clearList) (struct c_list* list);
+    const char* (*toString) (struct c_list* list);
 
 } List;
 
@@ -32,5 +34,7 @@ typedef struct c_list {
 List* new_List();
 void _list_append(List* list, char ch);
 void _c_printList(List* list);
+void _c_clearList(List* list);
+char* _c_ListToString(List* list);
 
 #endif //HAWK_C_LIST_H

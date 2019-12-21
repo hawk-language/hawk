@@ -5,6 +5,7 @@
 #ifndef HAWK_TOKEN_H
 #define HAWK_TOKEN_H
 
+#include "../collections/c_list.h"
 // All possible Tokens
 
 enum Ha_Tokens {
@@ -44,11 +45,13 @@ enum Ha_Tokens {
 
 struct Ha_Token {
     enum Ha_Tokens tk; // todo: rename
-    char *value;
+    List* value;
 
     // For error handling
-    int linenumber;
-    char* error;
+    // int linenumber;
+    // char* error;
 };
+
+typedef struct Ha_Token Token;
 
 #endif //HAWK_TOKEN_H

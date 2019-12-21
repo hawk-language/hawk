@@ -34,5 +34,7 @@ Lexer new_Lexer(char* file);
 int _lexer_fileInput(struct Ha_Lexer* lexer);
 int _lexing(struct Ha_Lexer* lexer);
 int _evaluate_List(struct Ha_Lexer* lexer);
+int isSeperator(char value);
+enum Ha_Tokens getTokenFromValue(char *value);
 
 #endif //HAWK_LEXER_H

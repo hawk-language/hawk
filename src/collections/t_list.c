@@ -3,21 +3,28 @@
 //
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "t_list.h"
 
 // Constructor like function for creating a new Token List
 
-struct t_list* new_Token_List() {
+struct t_list*
+new_Token_List() {
 
     T_List* new = malloc(sizeof(T_List));
     new->head = NULL;
     new->tail = NULL;
-
+    new->t_append = _t_append;
+    new->t_printList = _t_printList;
+    return new;
 }
 
 // Function for appending a new item to the Token List
 
-struct t_list* _t_append(T_List* list, struct Ha_Token token) {
+void
+_t_append(T_List* list, Token token) {
+
+    // maybe not working right, test it and rework it if needed to
 
     if (list->head == NULL) {
 
@@ -28,24 +35,38 @@ struct t_list* _t_append(T_List* list, struct Ha_Token token) {
 
         list->head->value.tk = token.tk;
         list->head->value.value = token.value;
-        list->head->value.linenumber = token.linenumber;
-        list->head->value.error = token.error;
 
-        list->length = 1;
+        //list->head->value.linenumber = token.linenumber;
+        //list->head->value.error = token.error;
+        //list->length = 1;
 
     } else {
 
         T_Node* new = malloc(sizeof(T_Node));
-
         new->value.tk = token.tk;
         new->value.value = token.value;
-        new->value.linenumber = token.linenumber;
-        new->value.error = token.error;
 
+        //new->value.linenumber = token.linenumber;
+        //new->value.error = token.error;
         list->tail->next = new;
         new->previous = list->tail;
         list->tail = new;
-        list->length += 1;
+        list->tail->next = NULL;
+        //list->length += 1;
+    }
+
+}
+
+void
+_t_printList(T_List* list) {
+    // FIXME: not printing the list proberly
+    T_Node* node = list->head;
+
+    while (node->next != NULL) {
+        node->value.value->printList(node->value.value);
+        //printf("  %d\n", node->value.tk);
+        node = node->next;
+
     }
 
 }
