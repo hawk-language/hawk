@@ -25,7 +25,7 @@ typedef struct c_list {
     void (*append) (struct c_list* list, char ch);
     void (*printList) (struct c_list* list);
     void (*clearList) (struct c_list* list);
-    const char* (*toString) (struct c_list* list);
+    char* (*toString) (struct c_list* list);
 
 } List;
 
