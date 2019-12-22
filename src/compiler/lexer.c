@@ -1,5 +1,6 @@
 
 #include <stdlib.h>
+#include <string.h>
 #include "lexer.h"
 #include "../collections/c_list.h"
 #include "../collections/t_list.h"
@@ -31,9 +32,9 @@ int
 _lexing(struct Ha_Lexer* lexer) {
 
     lexer->lexer_inputFile(lexer);
-    lexer->clist->printList(lexer->clist);
+    //lexer->clist->printList(lexer->clist);
     lexer->eval_List(lexer);
-    lexer->tlist->t_printList(lexer->tlist);
+    lexer->tlist->t_printList(lexer->tlist); // FIXME: is throwing seg fault
 
     return 1;
 }
@@ -64,7 +65,7 @@ int
 _evaluate_List(struct Ha_Lexer* lexer) {
 
     Node* list = lexer->clist->head;
-
+    static const struct Ha_Token Empty;
     struct Ha_Token currentToken;
     enum Ha_Tokens currentEnum;
     currentToken.value = new_List();
@@ -72,19 +73,7 @@ _evaluate_List(struct Ha_Lexer* lexer) {
     while (list->next != NULL) {
 
         if (isSeperator(list->value)) {
-
-            // todo: test if it working
-
-            currentEnum = getTokenFromValue(_c_ListToString(currentToken.value));
-            currentToken.tk = currentEnum;
-            lexer->tlist->t_append(lexer->tlist, currentToken);
-            currentToken.value->clearList(currentToken.value);
-
-            currentToken.value->append(currentToken.value, list->value);
-            currentEnum = getTokenFromValue(&list->value);
-            currentToken.tk = currentEnum;
-            _t_append(lexer->tlist, currentToken);
-            currentToken.value->clearList(currentToken.value);
+            // todo: write out function
 
 
         } else {
@@ -122,7 +111,29 @@ getTokenFromValue(char *value) {
 
     if (strlen(value) > 1) {
 
-        return IDENTIFIER;
+        if (!strcmp(value, "func")) {
+            return KW_FUNC;
+        } else if (!strcmp(value, "if")) {
+            return KW_IF;
+        } else if (!strcmp(value, "else")) {
+            return KW_ELSE;
+        } else if (!strcmp(value, "for")) {
+            return KW_FOR;
+        } else if (!strcmp(value, "do")) {
+            return KW_DO;
+        } else if (!strcmp(value, "while")) {
+            return KW_WHILE;
+        } else if (!strcmp(value, "int")) {
+            return KW_INT;
+        } else if (!strcmp(value, "str")) {
+            return KW_STR;
+        } else if (!strcmp(value, "double")) {
+            return KW_DOUBLE;
+        } else if (!strcmp(value, "char")) {
+            return KW_CHAR;
+        } else {
+            return NONE;
+        }
 
     } else {
 

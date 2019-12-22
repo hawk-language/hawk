@@ -86,12 +86,41 @@ _c_ListToString(List* list) {
     Node* head = list->head;
     char *string = malloc(list->length+1);
     int i = 0;
+    // FIXME: throws sometimes and segmentation fault
 
     while (head->next != NULL) {
         string[i] = head->value;
         i += 1;
         head = head->next;
     }
-    string[i] = '\0';
+
+    string[i] = head->value;
+    string[i+1] = '\0';
     return string;
 }
+
+// function provided by an discord user
+
+/*
+char*
+_c_ListToString(List *list) {
+    if(!list || !list->head || list->length == SIZE_MAX) {
+        return NULL;
+    }
+    Node *currentNode = list->head;
+    size_t index = 0, maxIndex = list->length + 1;
+    char *string = malloc(maxIndex);
+    do {
+        string[index] = currentNode->value;
+        index++;
+
+        if(index > maxIndex) {
+            return NULL;
+        }
+    } while (currentNode = currentNode->next);
+
+    string[index] = '\0';
+
+    return string;
+}
+ */

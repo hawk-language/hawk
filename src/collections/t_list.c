@@ -60,11 +60,20 @@ _t_append(T_List* list, Token token) {
 void
 _t_printList(T_List* list) {
     // FIXME: not printing the list proberly
+
     T_Node* node = list->head;
 
-    while (node->next != NULL) {
-        node->value.value->printList(node->value.value);
-        //printf("  %d\n", node->value.tk);
+    if (node->next == NULL) {
+
+        _c_printList(node->value.value);
+        printf(" : %u\n", node->value.tk);
+
+    }
+
+    while (node->next != NULL ) {
+
+        _c_printList(node->value.value);
+        printf(" : %u\n", node->value.tk);
         node = node->next;
 
     }
