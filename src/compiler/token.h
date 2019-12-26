@@ -9,7 +9,6 @@
 // All possible Tokens
 
 enum Ha_Tokens {
-    SPACE,
     COMMA,
     DOT,
     COLON,
@@ -28,6 +27,7 @@ enum Ha_Tokens {
     M_MULTI,          // *
     M_DIV,            // /
     M_CIRC,            // ^
+    M_MOD,             // %
 
     KW_FUNC,
     KW_INT,

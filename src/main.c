@@ -5,9 +5,11 @@
 #include "collections/c_list.h"
 #include <stdlib.h>
 #include <stdio.h>
+
 int main(int argc, char *argv[]) {
 
     Lexer lexer = new_Lexer("../test.hk");
     lexer.lex(&lexer);
 
+    return 0;
 }

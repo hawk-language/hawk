@@ -36,5 +36,6 @@ void _list_append(List* list, char ch);
 void _c_printList(List* list);
 void _c_clearList(List* list);
 char* _c_ListToString(List* list);
+int isEmpty(List* list);
 
 #endif //HAWK_C_LIST_H

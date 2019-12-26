@@ -1,4 +1,3 @@
-
 #include <stdlib.h>
 #include <string.h>
 #include "lexer.h"
@@ -32,9 +31,9 @@ int
 _lexing(struct Ha_Lexer* lexer) {
 
     lexer->lexer_inputFile(lexer);
-    //lexer->clist->printList(lexer->clist);
     lexer->eval_List(lexer);
-    lexer->tlist->t_printList(lexer->tlist); // FIXME: is throwing seg fault
+
+    //lexer->tlist->t_printList(lexer->tlist); // FIXME: is throwing seg fault
 
     return 1;
 }
@@ -73,8 +72,40 @@ _evaluate_List(struct Ha_Lexer* lexer) {
     while (list->next != NULL) {
 
         if (isSeperator(list->value)) {
-            // todo: write out function
 
+            if (isSingleToken(list->value)) {
+
+                if (isEmpty(currentToken.value)) {
+
+                    currentEnum = getTokenFromValue(&list->value);
+                    currentToken.value->append(currentToken.value, list->value);
+                    currentToken.tk = currentEnum;
+                    _t_append(lexer->tlist, currentToken);
+                    currentToken = Empty;
+                    currentToken.value = new_List();
+
+                } else {
+
+                    char *s = _c_ListToString(currentToken.value);
+                    currentEnum = getTokenFromValue(s);
+                    currentToken.tk = currentEnum;
+                    _t_append(lexer->tlist, currentToken);
+                    currentToken = Empty;
+                    currentToken.value = new_List();
+
+                    currentEnum = getTokenFromValue(&list->value);
+                    currentToken.value->append(currentToken.value, list->value);
+                    currentToken.tk = currentEnum;
+                    _t_append(lexer->tlist, currentToken);
+                    currentToken = Empty;
+                    currentToken.value = new_List();
+
+                }
+            } else {
+
+                printf("SPACE");
+
+            }
 
         } else {
 
@@ -92,15 +123,29 @@ _evaluate_List(struct Ha_Lexer* lexer) {
 int
 isSeperator(char value) {
 
-    // todo: expand for all seperators
-
     int isSep = 0;
 
-    if (value == ' ' || value == '(' || value == ')' || value == '[' || value == ']' || value == '{' || value == '}' || value == ';') {
+    if (value == ' ' || value == '\n' || isSingleToken(value)) {
         isSep = 1;
     }
 
     return isSep;
+
+}
+
+int
+isSingleToken(char value) {
+
+    int isSingleToken = 0;
+
+    if (value == '(' || value == ')' || value == '{' || value == '}' || value == '[' || value == ']'  || value == '+'  || value == '-'  || value == '*'
+    || value == '/'  || value == '^'  || value == '%'  || value == '.'  || value == ':'  || value == ';' || value == '=') {
+
+        isSingleToken = 1;
+
+    }
+
+    return isSingleToken;
 
 }
 
@@ -132,14 +177,13 @@ getTokenFromValue(char *value) {
         } else if (!strcmp(value, "char")) {
             return KW_CHAR;
         } else {
-            return NONE;
+            return IDENTIFIER;
         }
 
     } else {
 
         switch ((int) value) {
 
-            case ' ': return SPACE;
             case '(': return OPEN_PAREN;
             case ')': return CLOSE_PAREN;
             case '[': return OPEN_BRACK;

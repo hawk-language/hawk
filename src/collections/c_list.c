@@ -14,6 +14,7 @@ new_List() {
     List* list = malloc(sizeof(List));
     list->head = NULL;
     list->tail = NULL;
+    list->length = 0;
     list->append = _list_append;
     list->printList = _c_printList;
     list->clearList = _c_clearList;
@@ -84,17 +85,17 @@ char*
 _c_ListToString(List* list) {
     // todo: Make an own string append function and rework this function
     Node* head = list->head;
+    printf("%p\n", (void *) list->head);
     char *string = malloc(list->length+1);
     int i = 0;
-    // FIXME: throws sometimes and segmentation fault
-
-    while (head->next != NULL) {
+    // FIXME: throws sometimes an segmentation fault
+    while (head->next == NULL) {
         string[i] = head->value;
         i += 1;
         head = head->next;
     }
 
-    string[i] = head->value;
+    //string[i] = head->value;
     string[i+1] = '\0';
     return string;
 }
@@ -124,3 +125,18 @@ _c_ListToString(List *list) {
     return string;
 }
  */
+
+int
+isEmpty(List* list) {
+
+    int isEmpty = 0;
+
+    if (list->head == NULL && list->tail == NULL) {
+
+        isEmpty = 1;
+
+    }
+
+    return isEmpty;
+
+}
