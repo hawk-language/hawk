@@ -68,9 +68,9 @@ _evaluate_List(struct Ha_Lexer* lexer) {
     struct Ha_Token currentToken;
     enum Ha_Tokens currentEnum;
     currentToken.value = new_List();
-
+    int i = 0;
     while (list->next != NULL) {
-
+        i += 1;
         if (isSeperator(list->value)) {
 
             if (isSingleToken(list->value)) {
@@ -112,6 +112,7 @@ _evaluate_List(struct Ha_Lexer* lexer) {
             currentToken.value->append(currentToken.value, list->value);
 
         }
+        printf("nnn%dnnn", i);
 
         list = list->next;
     }
