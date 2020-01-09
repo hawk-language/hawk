@@ -1,1 +1,9 @@
-func main ( ) { int a = 0 ; }
+func main() {
+
+    if (hallo == 123) {
+
+    }
+    for ()
+    while{}
+
+}

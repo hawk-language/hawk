@@ -8,7 +8,6 @@
 #include "c_list.h"
 
 // A constructor like function for initializing a character list
-
 List*
 new_List() {
     List* list = malloc(sizeof(List));
@@ -23,7 +22,6 @@ new_List() {
 }
 
 // Adds a further char to the character list
-
 void
 _list_append(List* list, char ch) {
 
@@ -48,7 +46,6 @@ _list_append(List* list, char ch) {
 }
 
 // Prints the whole list to the console (only for debugging purposes)
-
 void
 _c_printList(List* list) {
 
@@ -81,62 +78,26 @@ _c_clearList(List* list) {
 
 }
 
+// function written by an user of morpheus tutorials
 char*
 _c_ListToString(List* list) {
-    // todo: Make an own string append function and rework this function
     Node* head = list->head;
-    printf("%p\n", (void *) list->head);
-    char *string = malloc(list->length+1);
+    char *string = malloc(sizeof(char) * (list->length + 1));
     int i = 0;
     // FIXME: throws sometimes an segmentation fault
-    while (head->next == NULL) {
-        string[i] = head->value;
-        i += 1;
+    while (head) {
+        string[i++] = head->value;
         head = head->next;
     }
-
-    //string[i] = head->value;
-    string[i+1] = '\0';
+    string[i] = '\0';
     return string;
 }
-
-// function provided by an discord user
-
-/*
-char*
-_c_ListToString(List *list) {
-    if(!list || !list->head || list->length == SIZE_MAX) {
-        return NULL;
-    }
-    Node *currentNode = list->head;
-    size_t index = 0, maxIndex = list->length + 1;
-    char *string = malloc(maxIndex);
-    do {
-        string[index] = currentNode->value;
-        index++;
-
-        if(index > maxIndex) {
-            return NULL;
-        }
-    } while (currentNode = currentNode->next);
-
-    string[index] = '\0';
-
-    return string;
-}
- */
 
 int
 isEmpty(List* list) {
-
     int isEmpty = 0;
-
     if (list->head == NULL && list->tail == NULL) {
-
         isEmpty = 1;
-
     }
-
     return isEmpty;
-
 }

@@ -62,7 +62,7 @@ _t_printList(T_List* list) {
     // FIXME: not printing the list proberly
     T_Node* node = list->head;
 
-    printf("%p %p %p", (void *) list, (void *) node, (void *) list->head);
+    //printf("%p %p %p", (void *) list, (void *) node, (void *) list->head);
 
     while (node->next != NULL ) {
 

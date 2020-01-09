@@ -37,5 +37,7 @@ int _evaluate_List  (struct Ha_Lexer* lexer);
 int isSeperator(char value);
 int isSingleToken(char value);
 enum Ha_Tokens getTokenFromValue(char *value);
+int isKeyword(char *value, enum Ha_Tokens* token);
+int isNumber(char *value);
 
 #endif //HAWK_LEXER_H

@@ -20,7 +20,7 @@ enum Ha_Tokens {
     OPEN_BRACK,     // [
     CLOSE_BRACK,    // ]
     IDENTIFIER,
-    NONE,
+    NUMBER,
 
     M_PLUS,           // +
     M_MINUS,          // -
@@ -28,6 +28,13 @@ enum Ha_Tokens {
     M_DIV,            // /
     M_CIRC,            // ^
     M_MOD,             // %
+
+    OP_EQUAL,
+    OP_NOTEQ,
+    OP_ISEQ,
+
+    BIN_OR,
+    BIN_AND,
 
     KW_FUNC,
     KW_INT,

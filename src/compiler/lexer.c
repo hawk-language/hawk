@@ -33,7 +33,7 @@ _lexing(struct Ha_Lexer* lexer) {
     lexer->lexer_inputFile(lexer);
     lexer->eval_List(lexer);
 
-    //lexer->tlist->t_printList(lexer->tlist); // FIXME: is throwing seg fault
+    lexer->tlist->t_printList(lexer->tlist); // FIXME: is throwing seg fault
 
     return 1;
 }
@@ -68,9 +68,9 @@ _evaluate_List(struct Ha_Lexer* lexer) {
     struct Ha_Token currentToken;
     enum Ha_Tokens currentEnum;
     currentToken.value = new_List();
-    int i = 0;
+
     while (list->next != NULL) {
-        i += 1;
+
         if (isSeperator(list->value)) {
 
             if (isSingleToken(list->value)) {
@@ -99,26 +99,29 @@ _evaluate_List(struct Ha_Lexer* lexer) {
                     _t_append(lexer->tlist, currentToken);
                     currentToken = Empty;
                     currentToken.value = new_List();
-
                 }
+
             } else {
 
-                printf("SPACE");
+                if (!isEmpty(currentToken.value)) {
 
+                    char *s = _c_ListToString(currentToken.value);
+                    currentEnum = getTokenFromValue(s);
+                    currentToken.tk = currentEnum;
+                    _t_append(lexer->tlist, currentToken);
+                    currentToken = Empty;
+                    currentToken.value = new_List();
+
+                }
             }
 
-        } else {
-
-            currentToken.value->append(currentToken.value, list->value);
+        } else {currentToken.value->append(currentToken.value, list->value);
 
         }
-        printf("nnn%dnnn", i);
 
         list = list->next;
     }
-
     return 1;
-
 }
 
 int
@@ -153,64 +156,84 @@ isSingleToken(char value) {
 enum Ha_Tokens
 getTokenFromValue(char *value) {
 
-    // todo: to for all tokens
+    enum Ha_Tokens token;
 
-    if (strlen(value) > 1) {
+    if (isKeyword(value, &token)) {
+        return token;
+    } else if(isNumber(value)) {
+        return NUMBER;
+    } else {
+        if (strlen(value) == 1) {
 
-        if (!strcmp(value, "func")) {
-            return KW_FUNC;
-        } else if (!strcmp(value, "if")) {
-            return KW_IF;
-        } else if (!strcmp(value, "else")) {
-            return KW_ELSE;
-        } else if (!strcmp(value, "for")) {
-            return KW_FOR;
-        } else if (!strcmp(value, "do")) {
-            return KW_DO;
-        } else if (!strcmp(value, "while")) {
-            return KW_WHILE;
-        } else if (!strcmp(value, "int")) {
-            return KW_INT;
-        } else if (!strcmp(value, "str")) {
-            return KW_STR;
-        } else if (!strcmp(value, "double")) {
-            return KW_DOUBLE;
-        } else if (!strcmp(value, "char")) {
-            return KW_CHAR;
+            switch (*value) {
+                case '(': return OPEN_PAREN;
+                case ')': return CLOSE_PAREN;
+                case '[': return OPEN_BRACK;
+                case ']': return CLOSE_BRACK;
+                case '{': return OPEN_CURL;
+                case '}': return OPEN_CURL;
+                case ';': return SEMICOLON;
+                case ':': return COLON;
+                case ',': return COMMA;
+                case '.': return DOT;
+                case '+': return M_PLUS;
+                case '-': return M_MINUS;
+                case '*': return M_MULTI;
+                case '/': return M_DIV;
+                case '^': return M_CIRC;
+                case '=': return OP_EQUAL;
+                default: return IDENTIFIER;
+            }
         } else {
             return IDENTIFIER;
         }
-
-    } else {
-
-        switch ((int) value) {
-
-            case '(': return OPEN_PAREN;
-            case ')': return CLOSE_PAREN;
-            case '[': return OPEN_BRACK;
-            case ']': return CLOSE_BRACK;
-            case '{': return OPEN_CURL;
-            case '}': return OPEN_CURL;
-            case ';': return SEMICOLON;
-            case ':': return COLON;
-            case ',': return COMMA;
-            case '.': return DOT;
-            case '+': return M_PLUS;
-            case '-': return M_MINUS;
-            case '*': return M_MULTI;
-            case '/': return M_DIV;
-            case '^': return M_CIRC;
-            default: return NONE;
-
-        }
-
     }
+}
+
+int
+isNumber(char *value) {
+
+    int isNum = 0;
+    int i = 0;
+
+    while (value[i] != '\0' && isNum == 0) {
+        if (value[i] >= 48 && value[i] <= 57) {
+            isNum = 1;
+        }
+        i += 1;
+    }
+
+    return isNum;
 
 }
 
-int isKeyword(char *value) {
+int
+isKeyword(char *value, enum Ha_Tokens* token) {
 
-    // todo: write the function out
+    int isKW = 1;
 
-
+    if (!strcmp(value, "func")) {
+        *token = KW_FUNC;
+    } else if (!strcmp(value, "if")) {
+        *token = KW_IF;
+    } else if (!strcmp(value, "else")) {
+        *token = KW_ELSE;
+    } else if (!strcmp(value, "for")) {
+        *token = KW_FOR;
+    } else if (!strcmp(value, "do")) {
+        *token = KW_DO;
+    } else if (!strcmp(value, "while")) {
+        *token = KW_WHILE;
+    } else if (!strcmp(value, "int")) {
+        *token = KW_INT;
+    } else if (!strcmp(value, "str")) {
+        *token = KW_STR;
+    } else if (!strcmp(value, "double")) {
+        *token = KW_DOUBLE;
+    } else if (!strcmp(value, "char")) {
+        *token = KW_CHAR;
+    } else {
+        isKW = 0;
+    }
+    return isKW;
 }
