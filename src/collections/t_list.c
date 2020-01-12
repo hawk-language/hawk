@@ -4,7 +4,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "t_list.h"
+#include <hawk/t_list.h>
 
 // Constructor like function for creating a new Token List
 

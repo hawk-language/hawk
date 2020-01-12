@@ -5,7 +5,7 @@
 #ifndef HAWK_TOKEN_H
 #define HAWK_TOKEN_H
 
-#include "../collections/c_list.h"
+#include <hawk/c_list.h>
 // All possible Tokens
 
 enum Ha_Tokens {

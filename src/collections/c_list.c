@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "c_list.h"
+#include "../include/hawk/c_list.h"
 
 // A constructor like function for initializing a character list
 List*

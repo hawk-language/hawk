@@ -3,9 +3,9 @@
 //
 #include <stdio.h>
 #include <string.h>
-#include "../collections/c_list.h"
-#include "../collections/t_list.h"
-#include "token.h"
+#include <hawk/c_list.h>
+#include <hawk/t_list.h>
+#include <hawk/token.h>
 
 #ifndef HAWK_LEXER_H
 #define HAWK_LEXER_H

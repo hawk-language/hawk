@@ -1,9 +1,7 @@
 //
 // Created by lockna on 11/28/19.
 //
-#include "compiler/lexer.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include <hawk/lexer.h>
 
 int main(int argc, char *argv[]) {
 

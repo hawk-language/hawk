@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <string.h>
-#include "lexer.h"
-#include "../collections/c_list.h"
-#include "../collections/t_list.h"
-#include "token.h"
+#include <hawk/lexer.h>
+#include <hawk/c_list.h>
+#include <hawk/t_list.h>
+#include <hawk/token.h>
 
 // Functions for generating a new lexer
 

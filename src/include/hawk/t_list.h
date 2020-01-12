@@ -1,7 +1,7 @@
 //
 // Created by lockna on 12/11/19.
 //
-#include "../compiler/token.h"
+#include <hawk/token.h>
 #ifndef HAWK_T_LIST_H
 #define HAWK_T_LIST_H
 
