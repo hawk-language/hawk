@@ -10,7 +10,9 @@
 Lexer
 new_Lexer(char* file) {
     Lexer lexer;
-    lexer.file = file;
+    // FIXME: in cloning not recognizing the file
+    sprintf(lexer.file, "../%s", file);
+    //lexer.file = file;
     lexer.clist = new_List();
     lexer.clist->append = _list_append;
     lexer.clist->printList = _c_printList;
@@ -33,7 +35,7 @@ _lexing(struct Ha_Lexer* lexer) {
     lexer->lexer_inputFile(lexer);
     lexer->eval_List(lexer);
 
-    lexer->tlist->t_printList(lexer->tlist); // FIXME: is throwing seg fault
+    lexer->tlist->t_printList(lexer->tlist);
 
     return 1;
 }
@@ -62,7 +64,7 @@ _lexer_fileInput(struct Ha_Lexer* lexer) {
 
 int
 _evaluate_List(struct Ha_Lexer* lexer) {
-
+    // FIXME: last two closing curly braces aren't in token list
     Node* list = lexer->clist->head;
     static const struct Ha_Token Empty;
     struct Ha_Token currentToken;
@@ -70,7 +72,7 @@ _evaluate_List(struct Ha_Lexer* lexer) {
     currentToken.value = new_List();
 
     while (list->next != NULL) {
-
+        printf("%c", list->value);
         if (isSeperator(list->value)) {
 
             if (isSingleToken(list->value)) {
@@ -115,10 +117,9 @@ _evaluate_List(struct Ha_Lexer* lexer) {
                 }
             }
 
-        } else {currentToken.value->append(currentToken.value, list->value);
-
+        } else {
+            currentToken.value->append(currentToken.value, list->value);
         }
-
         list = list->next;
     }
     return 1;
@@ -144,9 +145,7 @@ isSingleToken(char value) {
 
     if (value == '(' || value == ')' || value == '{' || value == '}' || value == '[' || value == ']'  || value == '+'  || value == '-'  || value == '*'
     || value == '/'  || value == '^'  || value == '%'  || value == '.'  || value == ':'  || value == ';' || value == '=') {
-
         isSingleToken = 1;
-
     }
 
     return isSingleToken;

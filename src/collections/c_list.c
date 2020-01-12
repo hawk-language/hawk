@@ -84,7 +84,7 @@ _c_ListToString(List* list) {
     Node* head = list->head;
     char *string = malloc(sizeof(char) * (list->length + 1));
     int i = 0;
-    // FIXME: throws sometimes an segmentation fault
+
     while (head) {
         string[i++] = head->value;
         head = head->next;

@@ -51,7 +51,7 @@ enum Ha_Tokens {
 // Struct for a single token
 
 struct Ha_Token {
-    enum Ha_Tokens tk; // todo: rename
+    enum Ha_Tokens tk;
     List* value;
 
     // For error handling
