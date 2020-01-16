@@ -69,11 +69,11 @@ _c_clearList(List* list) {
     while (tail->previous != NULL) {
 
         tail->next = NULL;
-        tail->value = NULL;
+        tail->value = 0;
         tail = tail->previous;
 
     }
-    tail->value = NULL;
+    tail->value = 0;
     list->length = 0;
 
 }

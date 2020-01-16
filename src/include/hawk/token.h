@@ -32,6 +32,8 @@ enum Ha_Tokens {
     OP_EQUAL,
     OP_NOTEQ,
     OP_ISEQ,
+    OP_LT,              // Less than
+    OP_GT,              // Greather than
 
     BIN_OR,
     BIN_AND,
@@ -45,7 +47,11 @@ enum Ha_Tokens {
     KW_WHILE,
     KW_DO,
     KW_IF,
-    KW_ELSE
+    KW_ELSE,
+    KW_STRUCT,
+    KW_UNION,
+    KW_ENUM,
+    KW_CLASS
 };
 
 // Struct for a single token

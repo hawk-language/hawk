@@ -35,7 +35,7 @@ _lexing(struct Ha_Lexer* lexer) {
     lexer->lexer_inputFile(lexer);
     lexer->eval_List(lexer);
 
-    lexer->tlist->t_printList(lexer->tlist);
+    //lexer->tlist->t_printList(lexer->tlist);
 
     return 1;
 }
@@ -71,8 +71,8 @@ _evaluate_List(struct Ha_Lexer* lexer) {
     enum Ha_Tokens currentEnum;
     currentToken.value = new_List();
 
-    while (list->next != NULL) {
-        printf("%c", list->value);
+    while (list != NULL) {
+
         if (isSeperator(list->value)) {
 
             if (isSingleToken(list->value)) {
@@ -83,6 +83,7 @@ _evaluate_List(struct Ha_Lexer* lexer) {
                     currentToken.value->append(currentToken.value, list->value);
                     currentToken.tk = currentEnum;
                     _t_append(lexer->tlist, currentToken);
+
                     currentToken = Empty;
                     currentToken.value = new_List();
 
@@ -122,6 +123,7 @@ _evaluate_List(struct Ha_Lexer* lexer) {
         }
         list = list->next;
     }
+    _t_printList(lexer->tlist);
     return 1;
 }
 
@@ -170,7 +172,7 @@ getTokenFromValue(char *value) {
                 case '[': return OPEN_BRACK;
                 case ']': return CLOSE_BRACK;
                 case '{': return OPEN_CURL;
-                case '}': return OPEN_CURL;
+                case '}': return CLOSE_CURL;
                 case ';': return SEMICOLON;
                 case ':': return COLON;
                 case ',': return COMMA;
@@ -181,6 +183,8 @@ getTokenFromValue(char *value) {
                 case '/': return M_DIV;
                 case '^': return M_CIRC;
                 case '=': return OP_EQUAL;
+                case '<': return OP_LT;
+                case '>': return OP_GT;
                 default: return IDENTIFIER;
             }
         } else {
@@ -192,12 +196,12 @@ getTokenFromValue(char *value) {
 int
 isNumber(char *value) {
 
-    int isNum = 0;
+    int isNum = 1;
     int i = 0;
 
-    while (value[i] != '\0' && isNum == 0) {
-        if (value[i] >= 48 && value[i] <= 57) {
-            isNum = 1;
+    while (value[i] != '\0' && isNum) {
+        if (!(value[i] >= 48 && value[i] <= 57)) {
+            isNum = 0;
         }
         i += 1;
     }
@@ -229,8 +233,12 @@ isKeyword(char *value, enum Ha_Tokens* token) {
         *token = KW_STR;
     } else if (!strcmp(value, "double")) {
         *token = KW_DOUBLE;
-    } else if (!strcmp(value, "char")) {
-        *token = KW_CHAR;
+    } else if (!strcmp(value, "struct")) {
+        *token = KW_STRUCT;
+    } else if (!strcmp(value, "union")) {
+        *token = KW_UNION;
+    } else if (!strcmp(value, "class")) {
+        *token = KW_CLASS;
     } else {
         isKW = 0;
     }

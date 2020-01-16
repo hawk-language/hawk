@@ -24,8 +24,6 @@ new_Token_List() {
 void
 _t_append(T_List* list, Token token) {
 
-    // maybe not working right, test it and rework it if needed to
-
     if (list->head == NULL) {
 
         list->head = malloc(sizeof(T_Node));
@@ -46,15 +44,17 @@ _t_append(T_List* list, Token token) {
         new->value.tk = token.tk;
         new->value.value = token.value;
 
+
+
         //new->value.linenumber = token.linenumber;
         //new->value.error = token.error;
         list->tail->next = new;
         new->previous = list->tail;
         list->tail = new;
-        list->tail->next = NULL;
+        new->next = NULL;
         //list->length += 1;
-    }
 
+    }
 }
 
 void
@@ -62,9 +62,7 @@ _t_printList(T_List* list) {
 
     T_Node* node = list->head;
 
-    //printf("%p %p %p", (void *) list, (void *) node, (void *) list->head);
-
-    while (node->next != NULL ) {
+    while (node != NULL ) {
 
         char *s = _c_ListToString(node->value.value);
         printf("%s", s);
