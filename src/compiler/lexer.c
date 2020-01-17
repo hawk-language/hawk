@@ -12,7 +12,6 @@ new_Lexer(char* file) {
     Lexer lexer;
     // FIXME: in cloning not recognizing the file
     sprintf(lexer.file, "../%s", file);
-    //lexer.file = file;
     lexer.clist = new_List();
     lexer.clist->append = _list_append;
     lexer.clist->printList = _c_printList;
@@ -64,7 +63,7 @@ _lexer_fileInput(struct Ha_Lexer* lexer) {
 
 int
 _evaluate_List(struct Ha_Lexer* lexer) {
-    // FIXME: last two closing curly braces aren't in token list
+
     Node* list = lexer->clist->head;
     static const struct Ha_Token Empty;
     struct Ha_Token currentToken;
