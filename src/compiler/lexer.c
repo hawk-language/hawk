@@ -31,10 +31,13 @@ new_Lexer(char* file) {
 int
 _lexing(struct Ha_Lexer* lexer) {
 
+    // todo: preprocessor (imports)
+    // FIXME: == is recognized as two seperate =
+
     lexer->lexer_inputFile(lexer);
     lexer->eval_List(lexer);
 
-    //lexer->tlist->t_printList(lexer->tlist);
+    lexer->tlist->t_printList(lexer->tlist);
 
     return 1;
 }
@@ -122,7 +125,6 @@ _evaluate_List(struct Ha_Lexer* lexer) {
         }
         list = list->next;
     }
-    _t_printList(lexer->tlist);
     return 1;
 }
 
@@ -162,6 +164,8 @@ getTokenFromValue(char *value) {
         return token;
     } else if(isNumber(value)) {
         return NUMBER;
+    } else if (value[0] == '"' && value[strlen(value)-1] == '"') {
+        return STRING_LITERAL;
     } else {
         if (strlen(value) == 1) {
 

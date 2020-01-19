@@ -7,5 +7,6 @@ func main() {
     help = a;
     a = c;
     c = help;
+    "hallo"
 
 }

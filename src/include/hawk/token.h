@@ -21,6 +21,7 @@ enum Ha_Tokens {
     CLOSE_BRACK,    // ]
     IDENTIFIER,
     NUMBER,
+    STRING_LITERAL,
 
     M_PLUS,           // +
     M_MINUS,          // -
