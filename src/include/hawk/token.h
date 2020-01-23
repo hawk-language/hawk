@@ -30,6 +30,7 @@ enum Ha_Tokens {
     M_CIRC,            // ^
     M_MOD,             // %
 
+    OP_ASSIGN,
     OP_EQUAL,
     OP_NOTEQ,
     OP_ISEQ,
@@ -38,6 +39,7 @@ enum Ha_Tokens {
 
     BIN_OR,
     BIN_AND,
+    BIN_XOR,
 
     KW_FUNC,
     KW_INT,
