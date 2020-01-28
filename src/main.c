@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]) {
 
-    setbuf(stdout, NULL);
+    //setbuf(stdout, NULL);
     Lexer lexer = new_Lexer(argv[1]);
     lexer.lex(&lexer);
 

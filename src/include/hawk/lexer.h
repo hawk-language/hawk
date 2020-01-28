@@ -31,13 +31,13 @@ typedef struct Ha_Lexer {
 
 
 Lexer new_Lexer(char* file);
-int _lexer_fileInput(struct Ha_Lexer* lexer);
+static int _lexer_fileInput(struct Ha_Lexer* lexer);
 int _lexing(struct Ha_Lexer* lexer);
-int _evaluate_List  (struct Ha_Lexer* lexer);
-int isSeperator(char value);
-int isSingleToken(char value);
-enum Ha_Tokens getTokenFromValue(char *value);
-int isKeyword(char *value, enum Ha_Tokens* token);
-int isNumber(char *value);
+static int _evaluate_List  (struct Ha_Lexer* lexer);
+static int isSeperator(char value);
+static int isSingleToken(char value);
+static enum Ha_Tokens getTokenFromValue(char *value);
+static int isKeyword(char *value, enum Ha_Tokens* token);
+static int isNumber(char *value);
 
 #endif //HAWK_LEXER_H

@@ -11,6 +11,7 @@ Lexer
 new_Lexer(char* file) {
     Lexer lexer;
     // FIXME: in cloning not recognizing the file
+    lexer.file = malloc(strlen(file)+3);
     sprintf(lexer.file, "../%s", file);
     lexer.clist = new_List();
     lexer.clist->append = _list_append;
@@ -44,7 +45,7 @@ _lexing(struct Ha_Lexer* lexer) {
 
 // Function for saving the file, given as input, to the lexers file member, as character list
 
-int
+static int
 _lexer_fileInput(struct Ha_Lexer* lexer) {
 
     char c;
@@ -64,7 +65,7 @@ _lexer_fileInput(struct Ha_Lexer* lexer) {
 
 // Function that evaluates the list from the lexer and saves the tokens to the token list from the lexer
 
-int
+static int
 _evaluate_List(struct Ha_Lexer* lexer) {
 
     Node* list = lexer->clist->head;
@@ -128,7 +129,7 @@ _evaluate_List(struct Ha_Lexer* lexer) {
     return 1;
 }
 
-int
+static int
 isSeperator(char value) {
 
     int isSep = 0;
@@ -141,7 +142,7 @@ isSeperator(char value) {
 
 }
 
-int
+static int
 isSingleToken(char value) {
 
     int isSingleToken = 0;
@@ -155,7 +156,7 @@ isSingleToken(char value) {
 
 }
 
-enum Ha_Tokens
+static enum Ha_Tokens
 getTokenFromValue(char *value) {
 
     enum Ha_Tokens token;
@@ -196,7 +197,7 @@ getTokenFromValue(char *value) {
     }
 }
 
-int
+static int
 isNumber(char *value) {
 
     int isNum = 1;
@@ -213,7 +214,7 @@ isNumber(char *value) {
 
 }
 
-int
+static int
 isKeyword(char *value, enum Ha_Tokens* token) {
 
     int isKW = 1;
