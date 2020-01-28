@@ -204,7 +204,7 @@ isNumber(char *value) {
     int i = 0;
 
     while (value[i] != '\0' && isNum) {
-        if (!(value[i] >= 48 && value[i] <= 57)) {
+        if (value[i] > '9' || value[i] < '0') {
             isNum = 0;
         }
         i += 1;
