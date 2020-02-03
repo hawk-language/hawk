@@ -1,18 +1,17 @@
 exec = hawk
-sources = $(wildcard src/*.c)
+sources = $(wildcard src/collections/*.c src/compiler/*.c src/*.c)
 objects = $(sources:.c=.o)
-flags = -g -Wall
+flags = -Wall -Isrc/include/hawk
 
 
 $(exec): $(objects)
 	gcc $(objects) $(flags) -o $(exec)
 
-%.o: %.c include/%.h
+%.o: %.c src/include/hawk/%.h
 	gcc -c $(flags) $< -o $@
 
 install:
 	make
-	cp ./hello.out /usr/local/bin/hello
 
 clean:
 	-rm *.out
