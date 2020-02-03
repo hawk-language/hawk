@@ -38,9 +38,9 @@ _lexing(struct Ha_Lexer* lexer) {
     lexer->lexer_inputFile(lexer);
     lexer->eval_List(lexer);
 
-    lexer->tlist->t_printList(lexer->tlist);
+    // lexer->tlist->t_printList(lexer->tlist);
 
-    return 1;
+    return 0;
 }
 
 // Function for saving the file, given as input, to the lexers file member, as character list
@@ -59,7 +59,7 @@ _lexer_fileInput(struct Ha_Lexer* lexer) {
     while ((c = fgetc(fp)) != EOF) {
         lexer->clist->append(lexer->clist, c);
     }
-    return 1;
+    return 0;
 
 }
 
@@ -126,7 +126,7 @@ _evaluate_List(struct Ha_Lexer* lexer) {
         }
         list = list->next;
     }
-    return 1;
+    return 0;
 }
 
 static int
