@@ -11,8 +11,7 @@ Lexer
 new_Lexer(char* file) {
     Lexer lexer;
     // FIXME: in cloning not recognizing the file
-    lexer.file = malloc(strlen(file)+3);
-    sprintf(lexer.file, "../%s", file);
+    lexer.file = file;
     lexer.clist = new_List();
     lexer.clist->append = _list_append;
     lexer.clist->printList = _c_printList;
@@ -38,7 +37,7 @@ _lexing(struct Ha_Lexer* lexer) {
     lexer->lexer_inputFile(lexer);
     lexer->eval_List(lexer);
 
-    // lexer->tlist->t_printList(lexer->tlist);
+    lexer->tlist->t_printList(lexer->tlist);
 
     return 0;
 }
