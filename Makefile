@@ -1,22 +1,26 @@
-exec = hawk
-sources = $(wildcard src/collections/*.c src/compiler/*.c src/*.c)
-objects = $(sources:.c=.o)
-flags = -Wall -Isrc/include/
+EXEC = hawk
+SOURCES = $(wildcard src/collections/*.c src/compiler/*.c src/*.c)
+OBJECTS = $(SOURCES:.c=.o)
+CFLAGS = -Wall -O3 -Isrc/include/
+BINDIR = build/bin
+BUILDDIR = build
+BUILDOBJ = $(addprefix build/, $(OBJECTS))
 
-all: $(exec)
+all: dir $(EXEC)
 
-$(exec): $(objects)
-	echo $(sources)
-	echo $(objects)
-	gcc $(objects) $(flags) -o $(exec)
+$(EXEC): $(OBJECTS)
+	echo $(SOURCES)
+	echo $(OBJECTS)
+	gcc  $(BUILDOBJ) $(CFLAGS) -o $(BINDIR)/$(EXEC)
 
-$(objects): %.o : %.c
-	gcc -c $(flags) $< -o $@
-
+$(OBJECTS): %.o : %.c
+	gcc -c $(CFLAGS) $< -o $(BUILDDIR)/$@
 
 clean:
-	-rm hawk
-	-rm *.o
-	-rm src/*.o
-	-rm src/collections/*.o
-	-rm src/compiler/*.o
+	-rm -rf build/*
+
+dir:
+	@mkdir build/bin
+	@mkdir build/src
+	@mkdir build/src/compiler
+	@mkdir build/src/collections
