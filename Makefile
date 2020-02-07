@@ -1,4 +1,5 @@
 EXEC = hawk
+SHELL = /bin/sh
 SOURCES = $(wildcard src/collections/*.c src/compiler/*.c src/*.c)
 OBJECTS = $(SOURCES:.c=.o)
 CFLAGS = -Wall -O3 -Isrc/include/
@@ -12,10 +13,13 @@ $(EXEC): $(OBJECTS)
 	echo $(SOURCES)
 	echo $(OBJECTS)
 	gcc  $(BUILDOBJ) $(CFLAGS) -o $(BINDIR)/$(EXEC)
-	cp build/bin/hawk .
+	@cp build/bin/hawk .
 
 $(OBJECTS): %.o : %.c
 	gcc -c $(CFLAGS) $< -o $(BUILDDIR)/$@
+
+install:
+	@cp hawk /usr/bin/
 
 clean:
 	-rm -rf build/*
