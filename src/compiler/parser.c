@@ -7,21 +7,22 @@
 #include <hawk/token.h>
 
 
-struct Ha_Token getNextToken(T_List list) {
+struct Token getNextToken(struct token_list list)
+{
 
-    static int indexOfToken = 0;
-    int counter = 0;
+        static int indexOfToken = 0;
+        int counter = 0;
 
-    T_Node* current = list.head;
+        struct token_node *current = list.head;
 
-    while (counter < indexOfToken && current != NULL) {
-        current = current->next;
-        counter += 1;
-    }
-    if (current != NULL) {
-        indexOfToken += 1;
-        return current->value;
-    }
+        while (counter < indexOfToken && current != NULL) {
+                current = current->next;
+                counter += 1;
+        }
+        if (current != NULL) {
+                indexOfToken += 1;
+                return current->value;
+        }
 
 }
 

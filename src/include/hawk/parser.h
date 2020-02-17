@@ -5,9 +5,33 @@
 #ifndef HAWK_PARSER_H
 #define HAWK_PARSER_H
 
+#include <hawk/lexer.h>
 
-#include "t_list.h"
+struct ExprAST {
+        int i;
+};
 
-struct Ha_Token getNextToken(T_List list);
+struct NumberExprAST {
+        struct ExprAST;
+};
+
+struct VariableExprAST {
+        struct ExprAST;
+};
+
+struct CallExprAST {
+        struct ExprAST;
+};
+
+struct PrototypeAST {
+        struct ExprAST;
+};
+
+struct FunctionAST {
+        struct ExprAST;
+};
+
+
+struct Token getNextToken(struct token_list list);
 
 #endif //HAWK_PARSER_H

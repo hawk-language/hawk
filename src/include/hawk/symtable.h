@@ -7,20 +7,20 @@
 
 struct SymTableEntry {
 
-    char* scope;
-    char* identifier;
-    char* type;
+            char *scope;
+            char *identifier;
+            char *type;
 
-    struct SymTableEntry* next;
-    struct SymTableEntry* prev;
+            struct SymTableEntry *next;
+            struct SymTableEntry *prev;
 
 };
 
 struct SymTable {
 
-    struct SymTableEntry* head;
-    struct SymTableEntry* tail;
-    int length;
+            struct SymTableEntry *head;
+            struct SymTableEntry *tail;
+            int length;
 
 };
 

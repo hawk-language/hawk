@@ -2,34 +2,33 @@
 // Created by lockna on 12/11/19.
 //
 #include <hawk/token.h>
+
 #ifndef HAWK_T_LIST_H
 #define HAWK_T_LIST_H
 
 // Node of the token list
 
-typedef struct t_Node {
+struct token_node {
 
-    struct Ha_Token value;
-    struct t_Node* next;
-    struct t_Node* previous;
+    struct Token value;
+    struct token_node *next;
+    struct token_node *previous;
 
-} T_Node;
+};
 
 // Actual token list
 
-typedef struct t_list {
+struct token_list {
 
     //int length;
-    struct t_Node* head;
-    struct t_Node* tail;
-    void (*t_append)(struct t_list* list, struct Ha_Token token);
-    void (*t_printList)(struct t_list* list);
+    struct token_node *head;
+    struct token_node *tail;
 
-} T_List;
+};
 
 
-void _t_append(T_List* list, struct Ha_Token token);
-struct t_list* new_Token_List();
-void _t_printList(T_List* list);
+void t_append(struct token_list *list, struct Token token);
+struct token_list *new_Token_List();
+void t_printList(struct token_list *list);
 
 #endif //HAWK_T_LIST_H

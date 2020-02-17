@@ -5,37 +5,29 @@
 #ifndef HAWK_C_LIST_H
 #define HAWK_C_LIST_H
 
-// The single Node of the character list
+struct char_node {
 
-typedef struct c_Node {
+        char value;
+        struct c_node *next;
+        struct c_node *previous;
 
-    char value;
-    struct c_Node* next;
-    struct c_Node* previous;
+};
 
-} Node;
+struct char_list {
 
-// The actual List, which contains the head, tail, length and the function pointers
+        int length;
+        struct char_node *head;
+        struct char_node *tail;
 
-typedef struct c_list {
 
-    int length;
-    struct c_Node* head;
-    struct c_Node* tail;
-    void (*append) (struct c_list* list, char ch);
-    void (*printList) (struct c_list* list);
-    void (*clearList) (struct c_list* list);
-    char* (*toString) (struct c_list* list);
+};
 
-} List;
 
-// Function Prototypes
-
-List* new_List();
-void _list_append(List* list, char ch);
-void _c_printList(List* list);
-void _c_clearList(List* list);
-char* _c_ListToString(List* list);
-int isEmpty(List* list);
+struct char_list *new_List();
+void list_append(struct char_list *list, char ch);
+void c_printList(struct char_list *list);
+void c_clearList(struct char_list *list);
+char *c_ListToString(struct char_list *list);
+int isEmpty(struct char_list *list);
 
 #endif //HAWK_C_LIST_H

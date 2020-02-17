@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
 project(hawk)
-#set (CMAKE_C_FLAGS "-fsanitize=address")
+set (CMAKE_C_FLAGS "-fms-extensions")
 include_directories(include)
 add_executable(hawk main.c compiler/lexer.c include/hawk/lexer.h compiler/parser.c include/hawk/parser.h collections/c_list.c include/hawk/c_list.h collections/t_list.c include/hawk/t_list.h collections/symtable.c include/hawk/symtable.h)
