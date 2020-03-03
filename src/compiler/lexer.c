@@ -47,7 +47,6 @@ static char *lexer_readFile(const char *path)
         rewind(file);
 
         char *buffer = malloc(fileSize + 1);
-        memset(buffer, 0, fileSize + 1);
 //> no-buffer
         if (buffer == NULL) {
                 fprintf(stderr, "Not enough memory to read \"%s\".\n", path);
@@ -248,7 +247,7 @@ static struct Token number(char *buffer, int *current)
 
         }
 
-        num[start] = '\0';
+        num[i] = '\0';
         *current -= 1;
 
 
