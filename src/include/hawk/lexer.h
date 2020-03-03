@@ -29,6 +29,7 @@ static int getTokenFromValue(char *value);
 static int isDigit(char value);
 static int isAlpha(char c);
 static struct Token number(char *buffer, int *current);
-static struct Token makeToken(char *value, int tok, int line);
+static struct Token string(const char *buffer, int *current);
+static struct Token makeToken(char *value, int tok);
 
 #endif //HAWK_LEXER_H

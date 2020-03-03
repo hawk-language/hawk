@@ -79,98 +79,98 @@ static int evaluate_File(struct Lexer *lexer)
         while (lexer->buffer[i] != '\0') {
 
                 if (lexer->buffer[i] == ',')
-                        token_append(lexer->t_list, makeToken(",", COMMA, line));
+                        token_append(lexer->t_list, makeToken(",", COMMA));
                 else if (lexer->buffer[i] == '.')
-                        token_append(lexer->t_list, makeToken(".", DOT, line));
+                        token_append(lexer->t_list, makeToken(".", DOT));
                 else if (lexer->buffer[i] == ':')
-                        token_append(lexer->t_list, makeToken(":", COLON, line));
+                        token_append(lexer->t_list, makeToken(":", COLON));
                 else if (lexer->buffer[i] == ';')
-                        token_append(lexer->t_list, makeToken(";", SEMICOLON, line));
+                        token_append(lexer->t_list, makeToken(";", SEMICOLON));
                 else if (lexer->buffer[i] == '(')
-                        token_append(lexer->t_list, makeToken("(", OPEN_PAREN, line));
+                        token_append(lexer->t_list, makeToken("(", OPEN_PAREN));
                 else if (lexer->buffer[i] == ')')
-                        token_append(lexer->t_list, makeToken(")", CLOSE_PAREN, line));
+                        token_append(lexer->t_list, makeToken(")", CLOSE_PAREN));
                 else if (lexer->buffer[i] == '{')
-                        token_append(lexer->t_list, makeToken("{", OPEN_CURL, line));
+                        token_append(lexer->t_list, makeToken("{", OPEN_CURL));
                 else if (lexer->buffer[i] == '}')
-                        token_append(lexer->t_list, makeToken("}", CLOSE_CURL, line));
+                        token_append(lexer->t_list, makeToken("}", CLOSE_CURL));
                 else if (lexer->buffer[i] == '[')
-                        token_append(lexer->t_list, makeToken("[", OPEN_BRACK, line));
+                        token_append(lexer->t_list, makeToken("[", OPEN_BRACK));
                 else if (lexer->buffer[i] == ']')
-                        token_append(lexer->t_list, makeToken("]", CLOSE_CURL, line));
+                        token_append(lexer->t_list, makeToken("]", CLOSE_CURL));
                 else if (lexer->buffer[i] == '*')
-                        token_append(lexer->t_list, makeToken("*", STAR, line));
+                        token_append(lexer->t_list, makeToken("*", STAR));
                 else if (lexer->buffer[i] == '^')
-                        token_append(lexer->t_list, makeToken("^", CIRC, line));
+                        token_append(lexer->t_list, makeToken("^", CIRC));
                 else if (lexer->buffer[i] == '%')
-                        token_append(lexer->t_list, makeToken("%", MOD, line));
+                        token_append(lexer->t_list, makeToken("%", MOD));
                 else if (lexer->buffer[i] == '\n')
                         line += 1;
                 else if (lexer->buffer[i] == ' ' || lexer->buffer[i] == '\t' || lexer->buffer[i] == '\r') {
 
                 } else if (lexer->buffer[i] == '+' && lexer->buffer[i + 1] == '+') {
 
-                        token_append(lexer->t_list, makeToken("++", PLUS_PLUS, line));
+                        token_append(lexer->t_list, makeToken("++", PLUS_PLUS));
                         i += 1;
 
                 } else if (lexer->buffer[i] == '+') {
 
-                        token_append(lexer->t_list, makeToken("+", PLUS, line));
+                        token_append(lexer->t_list, makeToken("+", PLUS));
 
                 } else if (lexer->buffer[i] == '-' && lexer->buffer[i + 1] == '-') {
 
-                        token_append(lexer->t_list, makeToken("--", MINUS_MINUS, line));
+                        token_append(lexer->t_list, makeToken("--", MINUS_MINUS));
                         i += 1;
 
                 } else if (lexer->buffer[i] == '-') {
 
-                        token_append(lexer->t_list, makeToken("-", MINUS, line));
+                        token_append(lexer->t_list, makeToken("-", MINUS));
 
                 } else if (lexer->buffer[i] == '&' && lexer->buffer[i + 1] == '&') {
 
-                        token_append(lexer->t_list, makeToken("&&", AND, line));
+                        token_append(lexer->t_list, makeToken("&&", AND));
                         i += -1;
 
                 } else if (lexer->buffer[i] == '|' && lexer->buffer[i + 1] == '|') {
 
-                        token_append(lexer->t_list, makeToken("||", OR, line));
+                        token_append(lexer->t_list, makeToken("||", OR));
                         i += 1;
 
                 } else if (lexer->buffer[i] == '!' && lexer->buffer[i + 1] == '=') {
 
-                        token_append(lexer->t_list, makeToken("!=", BANG_EQUAL, line));
+                        token_append(lexer->t_list, makeToken("!=", BANG_EQUAL));
                         i += 1;
 
                 } else if (lexer->buffer[i] == '!') {
 
-                        token_append(lexer->t_list, makeToken("!", BANG, line));
+                        token_append(lexer->t_list, makeToken("!", BANG));
 
                 } else if (lexer->buffer[i] == '=' && lexer->buffer[i + 1] == '=') {
 
-                        token_append(lexer->t_list, makeToken("==", EQUAL_EQUAL, line));
+                        token_append(lexer->t_list, makeToken("==", EQUAL_EQUAL));
                         i += 1;
 
                 } else if (lexer->buffer[i] == '=') {
 
-                        token_append(lexer->t_list, makeToken("=", EQUAL, line));
+                        token_append(lexer->t_list, makeToken("=", EQUAL));
 
                 } else if (lexer->buffer[i] == '>' && lexer->buffer[i + 1] == '=') {
 
-                        token_append(lexer->t_list, makeToken(">=", GREATER_EQUAL, line));
+                        token_append(lexer->t_list, makeToken(">=", GREATER_EQUAL));
                         i += 1;
 
                 } else if (lexer->buffer[i] == '>') {
 
-                        token_append(lexer->t_list, makeToken(">", GREATER, line));
+                        token_append(lexer->t_list, makeToken(">", GREATER));
 
                 } else if (lexer->buffer[i] == '<' && lexer->buffer[i + 1] == '=') {
 
-                        token_append(lexer->t_list, makeToken("<=", LESS_EQUAL, line));
+                        token_append(lexer->t_list, makeToken("<=", LESS_EQUAL));
                         i += 1;
 
                 } else if (lexer->buffer[i] == '<') {
 
-                        token_append(lexer->t_list, makeToken("<", LESS, line));
+                        token_append(lexer->t_list, makeToken("<", LESS));
 
                 } else if (lexer->buffer[i] == '/' && lexer->buffer[i + 1] == '/') {
 
@@ -181,7 +181,11 @@ static int evaluate_File(struct Lexer *lexer)
                         line += 1;
 
                 } else if (lexer->buffer[i] == '/') {
-                        token_append(lexer->t_list, makeToken("/", SLASH, line));
+                        token_append(lexer->t_list, makeToken("/", SLASH));
+                } else if (lexer->buffer[i] == '"') {
+
+                        token_append(lexer->t_list, string(lexer->buffer, &i));
+
                 } else {
 
                         if (isDigit(lexer->buffer[i])) {
@@ -231,7 +235,7 @@ static struct Token number(char *buffer, int *current)
 
         if (dot == 2) {
                 printf("hierasdf\n");
-                return makeToken("Unexpected DOT", ERR, line);
+                return makeToken("Unexpected DOT", ERR);
         }
 
 
@@ -239,9 +243,7 @@ static struct Token number(char *buffer, int *current)
         int i = 0;
 
         while (start != *current) {
-
                 num[i] = buffer[start];
-
                 i += 1;
                 start += 1;
 
@@ -251,23 +253,46 @@ static struct Token number(char *buffer, int *current)
         *current -= 1;
 
 
-        return makeToken(num, NUMBER, line);
+        return makeToken(num, NUMBER);
 
 
 }
 
-static char *string(char *buffer)
+static struct Token string(const char *buffer, int *current)
 {
 
+        *current += 1;
+        int start = *current;
+
+        while (buffer[*current] != '"') {
+
+                if (buffer[*current] == '\0') {
+                        return makeToken("Unterminated string", ERR);
+                }
+                *current += 1;
+        }
+
+        char *string = malloc((*current - start) + 1);
+
+        int i = 0;
+        while (start != *current) {
+                string[i] = buffer[start];
+                i += 1;
+                start += 1;
+        }
+
+        string[i] = '\0';
+        return makeToken(string, STRING);
+
 
 }
 
-static char *checkKeyword(char *buffer)
+static char *checkKeyword(char *buffer, int *current)
 {
 
 }
 
-static struct Token makeToken(char *value, int tok, int line)
+static struct Token makeToken(char *value, int tok)
 {
 
         struct Token token;
