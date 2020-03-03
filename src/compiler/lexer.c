@@ -77,7 +77,6 @@ static int evaluate_File(struct Lexer *lexer)
 
         int i = 0;
 
-
         while (lexer->buffer[i] != '\0') {
 
                 if (lexer->buffer[i] == ',')
