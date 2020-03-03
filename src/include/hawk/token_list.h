@@ -10,7 +10,9 @@
 
 struct token_node {
 
-    struct Token value;
+    // enum Ha_Token
+    struct Token token;
+
     struct token_node *next;
     struct token_node *previous;
 
@@ -27,8 +29,8 @@ struct token_list {
 };
 
 
-void t_append(struct token_list *list, struct Token token);
+void token_append(struct token_list *list, struct Token tok);
 struct token_list *new_Token_List();
-void t_printList(struct token_list *list);
+void token_printList(struct token_list *list);
 
 #endif //HAWK_T_LIST_H

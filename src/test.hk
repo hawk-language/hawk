@@ -1,12 +1,7 @@
-func main() {
+fun main()
+{
 
-    int a =0;
-    int c = 15;
-    int help = 0;
-
-    help = a;
-    a = c;
-    c = help;
-    print("hi");
+    int deltah = 9449813.81735;
+    print(delta);
 
 }

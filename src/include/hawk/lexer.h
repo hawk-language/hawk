@@ -3,31 +3,32 @@
 //
 #include <stdio.h>
 #include <string.h>
-#include <hawk/c_list.h>
-#include <hawk/t_list.h>
+#include <hawk/token_list.h>
 #include <hawk/token.h>
 
 #ifndef HAWK_LEXER_H
 #define HAWK_LEXER_H
 
-// The Lexer struct which contains the character list, the file, the token list and the function pointers
+// The Lexer struct which contains the character list, the file, the token
+// list and the function pointers
 
 struct Lexer {
 
-        char *file;
-        struct char_list *c_list;
-        struct token_list *t_list;
+    char *path;
+    char *buffer;
+    struct token_list *t_list;
 
 };
 
 struct Lexer new_Lexer(char *file);
-static int lexer_fileInput(struct Lexer *lexer);
+static char *lexer_readFile(const char *path);
 int lexing(struct Lexer *lexer);
-static int evaluate_List(struct Lexer *lexer);
-static int isSeperator(char value);
-static int isSingleToken(char value);
-static enum Ha_Tokens getTokenFromValue(char *value);
-static int isKeyword(char *value, int *token);
-static int isNumber(const char *value);
+static int evaluate_File(struct Lexer *lexer);
+
+static int getTokenFromValue(char *value);
+static int isDigit(char value);
+static int isAlpha(char c);
+static struct Token number(char *buffer, int *current);
+static struct Token makeToken(char *value, int tok, int line);
 
 #endif //HAWK_LEXER_H
