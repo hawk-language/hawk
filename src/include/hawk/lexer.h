@@ -28,6 +28,8 @@ static int evaluate_File(struct Lexer *lexer);
 static int getTokenFromValue(char *value);
 static int isDigit(char value);
 static int isAlpha(char c);
+static struct Token checkKeyword(char *buffer, int *current);
+static char *getNextAlpha(char *buffer, int *current);
 static struct Token number(char *buffer, int *current);
 static struct Token string(const char *buffer, int *current);
 static struct Token makeToken(char *value, int tok);

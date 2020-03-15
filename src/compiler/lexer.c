@@ -24,7 +24,7 @@ int lexing(struct Lexer *lexer)
         // todo: preprocessor (imports)
 
         evaluate_File(lexer);
-        token_printList(lexer->t_list);
+        //token_printList(lexer->t_list);
 
         return 0;
 }
@@ -183,24 +183,17 @@ static int evaluate_File(struct Lexer *lexer)
                 } else if (lexer->buffer[i] == '/') {
                         token_append(lexer->t_list, makeToken("/", SLASH));
                 } else if (lexer->buffer[i] == '"') {
-
                         token_append(lexer->t_list, string(lexer->buffer, &i));
-
+                } else if (isDigit(lexer->buffer[i])) {
+                        token_append(lexer->t_list, number(lexer->buffer, &i));
+                } else if (isAlpha(lexer->buffer[i])) {
+                        token_append(lexer->t_list, checkKeyword(lexer->buffer, &i));
                 } else {
-
-                        if (isDigit(lexer->buffer[i])) {
-
-                                token_append(lexer->t_list, number(lexer->buffer, &i));
-
-                        } else if (isAlpha(lexer->buffer[i])) {
-
-
-                        }
-
+                        printf("Unknown symbol");
                 }
 
-                i += 1;
 
+                i += 1;
 
         }
 
@@ -234,7 +227,6 @@ static struct Token number(char *buffer, int *current)
         }
 
         if (dot == 2) {
-                printf("hierasdf\n");
                 return makeToken("Unexpected DOT", ERR);
         }
 
@@ -254,7 +246,6 @@ static struct Token number(char *buffer, int *current)
 
 
         return makeToken(num, NUMBER);
-
 
 }
 
@@ -284,11 +275,43 @@ static struct Token string(const char *buffer, int *current)
         string[i] = '\0';
         return makeToken(string, STRING);
 
-
 }
 
-static char *checkKeyword(char *buffer, int *current)
+static struct Token checkKeyword(char *buffer, int *current)
 {
+
+        char *string = getNextAlpha(buffer, current);
+
+        if (!strcmp(string, "struct")) {
+                return makeToken("struct", STRUCT);
+        } else if (!strcmp(string, "fun")) {
+                return makeToken("fun", FUN);
+        } else if (!strcmp(string, "if")) {
+                return makeToken("if", IF);
+        } else if (!strcmp(string, "else")) {
+                return makeToken("else", ELSE);
+        } else if (!strcmp(string, "for")) {
+                return makeToken("for", FOR);
+        } else if (!strcmp(string, "while")) {
+                return makeToken("while", WHILE);
+        } else if (!strcmp(string, "return")) {
+                return makeToken("return", RETURN);
+        } else if (!strcmp(string, "import")) {
+                return makeToken("import", IMPORT);
+        } else if (!strcmp(string, "int")) {
+                return makeToken("int", INT);
+        } else if (!strcmp(string, "char")) {
+                return makeToken("char", CHAR);
+        } else if (!strcmp(string, "str")) {
+                return makeToken("str", STR);
+        } else if (!strcmp(string, "decimal")) {
+                return makeToken("decimal", DECIMAL);
+        } else if (!strcmp(string, "bool")) {
+                return makeToken("bool", BOOL);
+        } else {
+                return makeToken(string, IDENTIFIER);
+        }
+
 
 }
 
@@ -304,15 +327,24 @@ static struct Token makeToken(char *value, int tok)
 
 }
 
+static char *getNextAlpha(char *buffer, int *current)
+{
 
+        int start = *current;
+        while (isAlpha(buffer[*current]) && buffer[*current] != '\0') {
+                *current += 1;
+        }
 
+        char *string = malloc((*current - start) + 1);
 
+        int i = 0;
+        while (start != *current) {
+                string[i] = buffer[start];
+                i += 1;
+                start += 1;
+        }
+        *current -= 1;
+        string[i] = '\0';
+        return string;
 
-
-
-
-
-
-
-
-
+}
