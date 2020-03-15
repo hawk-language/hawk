@@ -24,7 +24,7 @@ int lexing(struct Lexer *lexer)
         // todo: preprocessor (imports)
 
         evaluate_File(lexer);
-        //token_printList(lexer->t_list);
+        token_printList(lexer->t_list);
 
         return 0;
 }
@@ -192,7 +192,6 @@ static int evaluate_File(struct Lexer *lexer)
                         printf("Unknown symbol");
                 }
 
-
                 i += 1;
 
         }
@@ -230,7 +229,6 @@ static struct Token number(char *buffer, int *current)
                 return makeToken("Unexpected DOT", ERR);
         }
 
-
         char *num = malloc((*current - start) + 1);
         int i = 0;
 
@@ -243,7 +241,6 @@ static struct Token number(char *buffer, int *current)
 
         num[i] = '\0';
         *current -= 1;
-
 
         return makeToken(num, NUMBER);
 

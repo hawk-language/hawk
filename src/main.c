@@ -7,8 +7,6 @@
 
 int main(int argc, char *argv[])
 {
-        // todo: lexer add comment support
-        // todo: lexer == is recognized as two seperate =
 
         if (argc == 1) {
                 printf("Welcome to the Hawk Programming Language!\n");

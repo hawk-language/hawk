@@ -5,7 +5,3 @@
 #include <hawk/parser.h>
 #include <hawk/lexer.h>
 #include <hawk/token.h>
-
-
-
-
