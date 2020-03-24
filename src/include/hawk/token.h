@@ -10,7 +10,17 @@
 enum TokenType {
 
     // Single-character tokens.
-            OPEN_PAREN, CLOSE_PAREN, OPEN_CURL, CLOSE_CURL, OPEN_BRACK, CLOSE_BRACK, COMMA, DOT, MINUS, PLUS, COLON,
+            OPEN_PAREN,
+    CLOSE_PAREN,
+    OPEN_CURL,
+    CLOSE_CURL,
+    OPEN_BRACK,
+    CLOSE_BRACK,
+    COMMA,
+    DOT,
+    MINUS,
+    PLUS,
+    COLON,
     SEMICOLON,
     SLASH,
     STAR,
@@ -22,16 +32,27 @@ enum TokenType {
     BANG_EQUAL,
     EQUAL,
     EQUAL_EQUAL,
-    GREATER, GREATER_EQUAL, LESS, LESS_EQUAL, PLUS_PLUS, MINUS_MINUS,
+    GREATER,
+    GREATER_EQUAL,
+    LESS,
+    LESS_EQUAL,
+    PLUS_PLUS,
+    MINUS_MINUS,
 
-    AND, OR,
+    AND,
+    OR,
 
     // Literals
-            IDENTIFIER, STRING, NUMBER,
+            IDENTIFIER,
+    STRING,
+    NUMBER,
 
     // Keywords
 
-    STRUCT, FUN, IF, ELSE, FOR,
+    STRUCT,
+    IF,
+    ELSE,
+    FOR,
     WHILE,
     DO,
     RETURN,

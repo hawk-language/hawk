@@ -281,8 +281,6 @@ static struct Token checkKeyword(char *buffer, int *current)
 
         if (!strcmp(string, "struct")) {
                 return makeToken("struct", STRUCT);
-        } else if (!strcmp(string, "fun")) {
-                return makeToken("fun", FUN);
         } else if (!strcmp(string, "if")) {
                 return makeToken("if", IF);
         } else if (!strcmp(string, "else")) {
