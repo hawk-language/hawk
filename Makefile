@@ -1,7 +1,7 @@
 EXEC = hawk
 CC = gcc
 SHELL = /bin/sh
-SOURCES = $(wildcard src/collections/*.c src/compiler/*.c src/*.c)
+SOURCES = $(shell find src -type f -name '*.c')
 OBJECTS = $(SOURCES:.c=.o)
 CFLAGS = -Wall -O3 -Isrc/include/ -fms-extensions
 BINDIR = build/bin
