@@ -1,5 +1,0 @@
-cmake_minimum_required(VERSION 3.15)
-project(hawk)
-set (CMAKE_C_FLAGS "-fms-extensions")
-include_directories(include)
-add_executable(hawk main.c lexer/lexer.c parser/parser.c collections/token_list.c parser/AST.c compiler/codegen.c)
