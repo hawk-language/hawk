@@ -24,8 +24,6 @@ struct Lexer new_Lexer(char *file);
 static char *lexer_readFile(const char *path);
 int lexing(struct Lexer *lexer);
 static int evaluate_File(struct Lexer *lexer);
-
-static int getTokenFromValue(char *value);
 static int isDigit(char value);
 static int isAlpha(char c);
 static struct Token checkKeyword(char *buffer, int *current);
