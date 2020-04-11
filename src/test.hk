@@ -1,4 +1,4 @@
-fun main()
+int main()
 {
 
     int deltah = 944981349981811191.81735;
