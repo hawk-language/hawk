@@ -8,6 +8,17 @@
 #include <hawk/token_list.h>
 #include <hawk/token.h>
 
+static char *lexer_readFile(const char *path);
+static int evaluate_File(struct Lexer *lexer);
+static int isDigit(char value);
+static int isAlpha(char c);
+static struct Token checkKeyword(char *buffer, int *current);
+static char *getNextAlpha(char *buffer, int *current);
+static struct Token number(char *buffer, int *current);
+static struct Token string(const char *buffer, int *current);
+static struct Token makeToken(char *value, int tok);
+
+
 // Functions for generating a new lexer
 
 int line = 1;
