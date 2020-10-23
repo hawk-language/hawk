@@ -18,8 +18,10 @@ enum AST_Node_Type {
 
 enum AST_BinExpr_Operator {
 
-    PLUS, MINUS, MUL, DIV
-
+    PLUS, 
+    MINUS, 
+    MUL, 
+    DIV
 };
 
 struct AST_Number {
